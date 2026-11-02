@@ -1,0 +1,49 @@
+version: 1
+project: "ProductManagement"
+lastUpdated: "2026-11-02"
+updatedBy: "Project Discovery Agent"
+
+patterns:
+  preferred:
+    - pattern: "Keep API logic behind application services and repositories"
+      reason: "The solution follows Clean Architecture boundaries across API, Application, Infrastructure, and Domain projects"
+      appliesTo: ["ProductManagement.API", "ProductManagement.Application", "ProductManagement.Infrastructure"]
+      addedDate: "2026-11-02"
+      source: "project-discovery"
+  avoid: []
+
+reviewOverrides:
+  skipForPaths:
+    - "**/bin/**"
+    - "**/obj/**"
+    - "**/node_modules/**"
+    - "**/dist/**"
+  extraSecurityPaths:
+    - "ProductManagement.API/**"
+    - "ProductManagement.Infrastructure/**"
+
+agentHints:
+  requirements: []
+  development:
+    - "Preserve the four-layer solution structure: Domain, Application, Infrastructure, and API"
+    - "The Angular application runs on port 4200 and calls the API through a CORS-enabled development policy"
+  review:
+    - "Flag SQL connection-string secrets or credentials added outside ASP.NET configuration providers"
+    - "Check controller changes for direct repository or DbContext access"
+  testing:
+    - "No committed test projects or dedicated Angular test coverage configuration were detected; add coverage and test projects as the suite grows"
+  architecture:
+    - "Use repository and service boundaries consistently instead of placing persistence logic in controllers"
+  maintenance:
+    - "The SQL Server connection is currently configured in appsettings.json for local integrated security"
+
+process:
+  skipDesignDocForTypes: ["chore"]
+  autonomousOnLabels: ["trivial"]
+  skipReviewForPaths:
+    - "**/*.md"
+  alwaysPostReleaseNotes: false
+  requireHumanReviewForPaths: []
+
+techDebt: []
+postmortems: []
