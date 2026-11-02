@@ -89,6 +89,16 @@ namespace ProductManagement.Infrastructure.Repositories
             return true;
         }
 
+        /// <summary>
+        /// Deletes a product from the legacy in-memory collection.
+        /// </summary>
+        /// <param name="product">The product to delete.</param>
+        /// <returns><see langword="true"/> if the product was removed; otherwise, <see langword="false"/>.</returns>
+        public bool Delete(Product product)
+        {
+            return _products.Remove(product);
+        }
+
         #endregion
     }
     #endregion

@@ -61,6 +61,13 @@ namespace ProductManagement.Application.Interfaces
         /// <returns><see langword="true"/> if the product was updated; otherwise, <see langword="false"/>.</returns>
         bool Update(Product product);
 
+        /// <summary>
+        /// Deletes a product from the repository.
+        /// </summary>
+        /// <param name="product">The product to delete.</param>
+        /// <returns><see langword="true"/> if the deletion was saved; otherwise, <see langword="false"/>.</returns>
+        bool Delete(Product product);
+
         #endregion
     }
     #endregion

@@ -1,0 +1,71 @@
+version: "1.0"
+
+sourceControl:
+  provider: github
+  github:
+    enabled: true
+    owner: "auro12345"
+    repo: "DotNetAngularSQL"
+    defaultBranch: main
+    mergeStrategy: squash
+    requireLinearHistory: true
+    requireSignedCommits: false
+    prTemplate: null
+
+issueTracking:
+  provider: none
+  jira:
+    enabled: false
+    baseUrl: null
+    projectKey: null
+  githubIssues:
+    enabled: false
+
+design:
+  figma:
+    enabled: false
+    teamId: null
+    defaultFileKey: null
+
+documentation:
+  confluence:
+    enabled: false
+    baseUrl: null
+    spaceKey: null
+    pages:
+      releaseNotesParent: null
+      designDocsParent: null
+      apiDocsParent: null
+      healthDashboard: null
+      adrParent: null
+
+externalSources:
+  fetchLinkedUrls: true
+  urlRouting:
+    github.com: github
+    figma.com: figma
+    atlassian.net: confluence
+  attachments:
+    images: true
+    pdfs: true
+    markdownFiles: true
+    officeFiles: false
+    maxSizeMb: 10
+
+notifications:
+  slack:
+    enabled: false
+    teamId: null
+    channels:
+      deployments: null
+      alerts: null
+      releases: null
+  microsoftTeams:
+    enabled: false
+    webhookUrl: null
+
+monitoring:
+  provider: none
+  sentry:
+    enabled: false
+    dsn: null

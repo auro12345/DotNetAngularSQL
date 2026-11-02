@@ -108,6 +108,17 @@ namespace ProductManagement.API.Controllers
             return product is null ? NotFound() : Ok(product);
         }
 
+        /// <summary>
+        /// Deletes an existing product.
+        /// </summary>
+        /// <param name="id">The unique identifier of the product to delete.</param>
+        /// <returns>HTTP 204 if deleted or HTTP 404 if not found.</returns>
+        [HttpDelete("{id:int}")]
+        public IActionResult Delete(int id)
+        {
+            return _productService.Delete(id) ? NoContent() : NotFound();
+        }
+
         #endregion
     }
     #endregion

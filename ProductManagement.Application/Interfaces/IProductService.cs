@@ -59,6 +59,13 @@ namespace ProductManagement.Application.Interfaces
         /// <returns>The updated product DTO if found; otherwise, <see langword="null"/>.</returns>
         ProductDto? Update(int id, UpdateProductRequest request);
 
+        /// <summary>
+        /// Deletes an existing product.
+        /// </summary>
+        /// <param name="id">The unique identifier of the product to delete.</param>
+        /// <returns><see langword="true"/> if deleted; otherwise, <see langword="false"/>.</returns>
+        bool Delete(int id);
+
         #endregion
     }
     #endregion
