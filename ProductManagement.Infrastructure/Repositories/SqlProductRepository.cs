@@ -90,6 +90,17 @@ namespace ProductManagement.Infrastructure.Repositories
             return _context.SaveChanges() > 0;
         }
 
+        /// <summary>
+        /// Deletes a product from the database and saves the change.
+        /// </summary>
+        /// <param name="product">The product to delete.</param>
+        /// <returns>True if the deletion was saved; otherwise, false.</returns>
+        public bool Delete(Product product)
+        {
+            _context.Products.Remove(product);
+            return _context.SaveChanges() > 0;
+        }
+
         #endregion
     }
 }

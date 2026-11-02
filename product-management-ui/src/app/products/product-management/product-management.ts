@@ -22,6 +22,7 @@ export class ProductManagement implements OnInit {
   saving = false;
   errorMessage = '';
   successMessage = '';
+  readonly deletingProductIds = new Set<number>();
 
   ngOnInit(): void { this.loadProducts(); }
 
@@ -75,6 +76,32 @@ export class ProductManagement implements OnInit {
   }
 
   cancelEdit(): void { this.editingId = null; this.form = this.emptyForm(); }
+
+  deleteProduct(product: Product): void {
+    if (this.deletingProductIds.has(product.id)) return;
+    if (!window.confirm(`Are you sure you want to delete "${product.name}"?`)) return;
+
+    this.deletingProductIds.add(product.id);
+    this.errorMessage = '';
+    this.successMessage = '';
+
+    this.productService.delete(product.id).subscribe({
+      next: () => {
+        this.products = this.products.filter(item => item.id !== product.id);
+        if (this.editingId === product.id) this.cancelEdit();
+        this.successMessage = `Product "${product.name}" deleted successfully.`;
+        this.deletingProductIds.delete(product.id);
+        this.cdr.detectChanges();
+      },
+      error: () => {
+        this.errorMessage = `Could not delete "${product.name}". The product remains unchanged.`;
+        this.deletingProductIds.delete(product.id);
+        this.cdr.detectChanges();
+      }
+    });
+  }
+
+  isDeleting(productId: number): boolean { return this.deletingProductIds.has(productId); }
 
   productsTotal(): number { return this.products.reduce((total, product) => total + product.price, 0); }
 
